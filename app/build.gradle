@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.chaquo.python'
+ext {
+    play_services_version = "15.0.1"
+    support_version = "27.1.1"
+}
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        applicationId "com.ntust.edu.test1"
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 5
+        versionName "1.0.5"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        ndk.abiFilters 'armeabi-v7a','arm64-v8a'
+//        ,'x86','x86_64'
+        python {
+            pip {
+                buildPython "C:\\Users\\kuo\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
+                install "librosa"
+            }
+        }
+    }
+    buildTypes {
+        release {
+
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+    aaptOptions {
+        noCompress "tflite"
+    }
+    useLibrary 'org.apache.http.legacy'
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'pub.devrel:easypermissions:0.2.0'
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient-android', version: '4.3.5.1'
+    implementation('org.apache.httpcomponents:httpmime:4.5.12') {
+        exclude module: "httpclient"
+    }
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'org.tensorflow:tensorflow-lite:2.2.0'
+
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.patie.pcv1">
+    <!-- 開啟網路權限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 開啟讀寫檔案權限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNAL_system_WINDOW" /> <!-- 開啟錄音權限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name="com.cgh.org.audio.Interface.InferenceActivity" />
+        <activity android:name="com.cgh.org.audio.Interface.ResultActivity" />
+        <activity
+            android:name="com.cgh.org.audio.Interface.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name="com.cgh.org.audio.Interface.AlphabetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.cgh.org.audio.Interface.WordCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.cgh.org.audio.Interface.WordCardLabelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.cgh.org.audio.Interface.UploaderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.cgh.org.audio.Interface.LabelActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

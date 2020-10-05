@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wordcard_label_layout"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_wordcard_label"
+                android:layout_width="120dp"
+                android:layout_height="90dp"
+                android:gravity="center_horizontal"
+                android:src="@drawable/wordcard01_1"/>
+
+            <TextView
+                android:id="@+id/text_wordcard_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/wordcard01_1"
+                android:background="@color/colorWhite"
+                android:textSize="15sp"
+                android:textColor="@color/colorSlateGray"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_wordcard_label_play"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/play"
+                    android:scaleType="centerInside"
+                    android:background="@drawable/oval_recode" />
+
+                <com.cgh.org.audio.Interface.MultiSpinner
+                    android:id="@+id/spinner_wordcard_label_error_class"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginLeft="7dp"
+                    android:layout_gravity="center_vertical"
+                    android:hint="@string/errorclass"
+                    android:textColor="@color/colorSlateGray"
+                    android:textSize="13sp" />
+                <Button
+                    android:id="@+id/btn_wordcard_label_correct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.3"
+                    android:gravity="center_vertical"
+                    android:text="@string/correct"
+                    android:textColor="@color/colorSlateGray"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_wordcard_label"
+                style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"/>
+
+            <Button
+                android:id="@+id/btn_wordcard_label_store"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginTop="3dp"
+                android:gravity="center_vertical"
+                android:text="@string/store"
+                android:textColor="@color/colorSlateGray"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
