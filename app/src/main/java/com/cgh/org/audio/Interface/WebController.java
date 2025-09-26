@@ -28,7 +28,6 @@ public class WebController {
         this.webView.setVisibility(WebView.INVISIBLE);
         this.webView.setWebChromeClient(new WebChromeClient());
         this.webView.getSettings().setUserAgentString(this.USER_AGENT);
-        this.webView.getSettings().setAppCacheEnabled(false);
         this.webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         this.webView.getSettings().setLoadWithOverviewMode(true);
