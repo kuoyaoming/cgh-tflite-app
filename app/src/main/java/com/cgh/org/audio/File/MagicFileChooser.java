@@ -57,6 +57,17 @@ public class MagicFileChooser {
             return Environment.getExternalStorageDirectory().getAbsolutePath();
         }
     }
+    
+    /**
+     * 靜態方法獲取儲存路徑
+     */
+    public static String getStoragePath(Context context) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            return context.getExternalFilesDir(Environment.DIRECTORY_MUSIC).getAbsolutePath();
+        } else {
+            return Environment.getExternalStorageDirectory().getAbsolutePath();
+        }
+    }
  
     /**
      * 儲存是否正在選取檔案。
@@ -213,7 +224,7 @@ public class MagicFileChooser {
                 final String[] divide = docId.split(":");
                 final String type = divide[0];
                 if ("primary".equals(type)) {
-                    String path = getStoragePath().concat("/").concat(divide[1]);
+                    String path = getStoragePath(context).concat("/").concat(divide[1]);
                     return createFileObjFromPath(path, mustCanRead);
                 } else {
                     String path = "/storage/".concat(type).concat("/").concat(divide[1]);
