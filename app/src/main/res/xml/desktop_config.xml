@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<desktop-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Desktop mode configuration for Android 16 -->
+    
+    <!-- Minimum width for desktop mode -->
+    <min-width>600dp</min-width>
+    
+    <!-- Minimum height for desktop mode -->
+    <min-height>400dp</min-height>
+    
+    <!-- Default window size for desktop mode -->
+    <default-width>800dp</default-width>
+    <default-height>600dp</default-height>
+    
+    <!-- Maximum window size for desktop mode -->
+    <max-width>1200dp</max-width>
+    <max-height>800dp</max-height>
+    
+    <!-- Enable window resizing -->
+    <resizeable>true</resizeable>
+    
+    <!-- Enable window moving -->
+    <moveable>true</moveable>
+    
+    <!-- Enable window minimizing -->
+    <minimizable>true</minimizable>
+    
+    <!-- Enable window maximizing -->
+    <maximizable>true</maximizable>
+    
+    <!-- Enable window closing -->
+    <closable>true</closable>
+    
+    <!-- Enable keyboard shortcuts -->
+    <keyboard-shortcuts>true</keyboard-shortcuts>
+    
+    <!-- Enable mouse support -->
+    <mouse-support>true</mouse-support>
+    
+    <!-- Enable touch support -->
+    <touch-support>true</touch-support>
+    
+    <!-- Enable multi-window support -->
+    <multi-window>true</multi-window>
+    
+    <!-- Enable picture-in-picture -->
+    <picture-in-picture>true</picture-in-picture>
+    
+    <!-- Desktop mode specific features -->
+    <desktop-features>
+        <!-- Enable taskbar integration -->
+        <taskbar-integration>true</taskbar-integration>
+        
+        <!-- Enable window snapping -->
+        <window-snapping>true</window-snapping>
+        
+        <!-- Enable window tiling -->
+        <window-tiling>true</window-tiling>
+        
+        <!-- Enable window cascading -->
+        <window-cascading>true</window-cascading>
+    </desktop-features>
+    
+    <!-- Keyboard shortcuts configuration -->
+    <keyboard-shortcuts>
+        <!-- Ctrl+N for new recording -->
+        <shortcut key="ctrl+n" action="new_recording" />
+        
+        <!-- Ctrl+O for open file -->
+        <shortcut key="ctrl+o" action="open_file" />
+        
+        <!-- Ctrl+S for save -->
+        <shortcut key="ctrl+s" action="save" />
+        
+        <!-- Ctrl+Z for undo -->
+        <shortcut key="ctrl+z" action="undo" />
+        
+        <!-- Ctrl+Y for redo -->
+        <shortcut key="ctrl+y" action="redo" />
+        
+        <!-- Space for play/pause -->
+        <shortcut key="space" action="play_pause" />
+        
+        <!-- Escape for stop -->
+        <shortcut key="escape" action="stop" />
+        
+        <!-- F1 for help -->
+        <shortcut key="f1" action="help" />
+        
+        <!-- F11 for fullscreen -->
+        <shortcut key="f11" action="fullscreen" />
+    </keyboard-shortcuts>
+    
+    <!-- Window states -->
+    <window-states>
+        <!-- Normal window state -->
+        <normal>
+            <width>800dp</width>
+            <height>600dp</height>
+        </normal>
+        
+        <!-- Maximized window state -->
+        <maximized>
+            <width>match_parent</width>
+            <height>match_parent</height>
+        </maximized>
+        
+        <!-- Minimized window state -->
+        <minimized>
+            <width>200dp</width>
+            <height>100dp</height>
+        </minimized>
+    </window-states>
+    
+</desktop-config>
