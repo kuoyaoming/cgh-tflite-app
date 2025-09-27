@@ -125,7 +125,7 @@ public class LabelActivity extends AppCompatActivity{
         // create viewholder and set it in recyclerView
         myAdapter = new MyAdapter(this, this.Directory);
         mRecyclerView.setAdapter(myAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayout.VERTICAL, false));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false));
     }
 
     public interface ListItem {

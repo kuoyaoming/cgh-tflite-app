@@ -1,9 +1,12 @@
 package com.cgh.org.audio.Recoder;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Environment;
+import androidx.core.content.ContextCompat;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -137,6 +140,44 @@ public class AudioRecordFunc {
         // 建立AudioRecord物件
         audioRecord = new AudioRecord(AUDIO_INPUT, AUDIO_SAMPLE_RATE,
                 AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSizeInBytes);
+    }
+
+    /**
+     * 創建音訊錄製物件 (帶權限檢查)
+     * @param context 上下文，用於權限檢查
+     * @return true 如果權限檢查通過，false 如果權限被拒絕
+     */
+    public boolean creatAudioRecordWithPermissionCheck(Context context) {
+        // 檢查錄音權限
+        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.RECORD_AUDIO) 
+                != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
+
+        // 獲取音訊檔案路徑
+        String mAudioRawPath = "";
+        if (isSdcardExit()) {
+            String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            mAudioRawPath = fileBasePath + AUDIO_WAV_DIR + AUDIO_RAW_FILENAME;
+        }
+        AudioName = mAudioRawPath;
+
+        String mAudioWavPath = "";
+        if (isSdcardExit()) {
+            String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            mAudioWavPath = fileBasePath + AUDIO_WAV_DIR + AUDIO_WAV_FILENAME;
+        }
+        NewAudioName = mAudioWavPath;
+
+        // 獲得緩衝區位元組大小
+        bufferSizeInBytes = AudioRecord.getMinBufferSize(AUDIO_SAMPLE_RATE,
+                AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+
+        // 建立AudioRecord物件
+        audioRecord = new AudioRecord(AUDIO_INPUT, AUDIO_SAMPLE_RATE,
+                AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSizeInBytes);
+        
+        return true;
     }
 
     /**

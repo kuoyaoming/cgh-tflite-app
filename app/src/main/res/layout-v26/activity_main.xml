@@ -35,9 +35,41 @@
                 android:paddingBottom="150dp"
                 android:src="@drawable/logo" />
 
+            <EditText
+                android:id="@+id/id"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/bg_edittext"
+                android:hint="@string/id"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/caseid"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/bg_edittext"
+                android:hint="@string/caseid"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/bg_edittext"
+                android:hint="@string/date"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:windowSoftInputMode="stateHidden" />
+
             <Button
                 android:id="@+id/btn_store"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff176"
