@@ -48,7 +48,7 @@ public class TFlite {
         try {
 
             tflite = new Interpreter(loadModelFile(fileDescriptor));
-            tflite.setNumThreads(4);
+            // tflite.setNumThreads(4); // API changed in newer versions
 
         } catch (IOException e) {
             System.out.println("load model error");

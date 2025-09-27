@@ -83,7 +83,7 @@ public class LiveUpdatesManager {
             // Add action buttons
             builder.addAction(android.R.drawable.ic_media_pause, "Pause", 
                 createActionIntent("pause_recording"));
-            builder.addAction(android.R.drawable.ic_media_stop, "Stop", 
+            builder.addAction(android.R.drawable.ic_media_pause, "Stop", 
                 createActionIntent("stop_recording"));
         }
         
@@ -159,7 +159,7 @@ public class LiveUpdatesManager {
                 .bigText("Uploading file... " + status + "\nProgress: " + progress + "%"));
             
             // Add action buttons
-            builder.addAction(android.R.drawable.ic_menu_cancel, "Cancel", 
+            builder.addAction(android.R.drawable.ic_menu_close_clear_cancel, "Cancel", 
                 createActionIntent("cancel_upload"));
             builder.addAction(android.R.drawable.ic_menu_info_details, "Details", 
                 createActionIntent("upload_details"));

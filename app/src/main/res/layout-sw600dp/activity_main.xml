@@ -111,7 +111,7 @@
                                 <ImageView
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
-                                    android:src="@drawable/ic_mic"
+                                    android:src="@android:drawable/ic_btn_speak_now"
                                     android:tint="@color/md_theme_light_primary" />
 
                                 <TextView
@@ -156,7 +156,7 @@
                                 <ImageView
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
-                                    android:src="@drawable/ic_analytics"
+                                    android:src="@android:drawable/ic_menu_manage"
                                     android:tint="@color/md_theme_light_secondary" />
 
                                 <TextView
@@ -201,7 +201,7 @@
                                 <ImageView
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
-                                    android:src="@drawable/ic_settings"
+                                    android:src="@android:drawable/ic_menu_preferences"
                                     android:tint="@color/md_theme_light_tertiary" />
 
                                 <TextView
@@ -246,14 +246,14 @@
                                 <ImageView
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
-                                    android:src="@drawable/ic_help"
+                                    android:src="@android:drawable/ic_menu_help"
                                     android:tint="@color/md_theme_light_outline" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="12dp"
-                                    android:text="Help & Support"
+                                    android:text="Help &amp; Support"
                                     android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
                                     android:textColor="@color/md_theme_light_onSurface" />
 
@@ -284,9 +284,7 @@
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/md_theme_light_surface"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/navigation_menu" />
+            android:background="@color/md_theme_light_surface" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

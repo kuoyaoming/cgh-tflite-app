@@ -39,10 +39,7 @@
         <item name="colorOutlineVariant">@color/md_theme_light_outlineVariant</item>
         
         <!-- Scrim color -->
-        <item name="colorScrim">@color/md_theme_light_scrim</item>
-        
-        <!-- Surface tint -->
-        <item name="colorSurfaceTint">@color/md_theme_light_primary</item>
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
         
         <!-- Status bar -->
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -65,9 +62,6 @@
         <!-- Material 3 Expressive features -->
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowSharedElementTransitions">true</item>
-        <item name="android:windowAllowEnterTransitionOverlap">true</item>
-        <item name="android:windowAllowReturnTransitionOverlap">true</item>
     </style>
     
     <!-- Dark theme variant -->
@@ -102,8 +96,7 @@
         
         <item name="colorOutline">@color/md_theme_dark_outline</item>
         <item name="colorOutlineVariant">@color/md_theme_dark_outlineVariant</item>
-        <item name="colorScrim">@color/md_theme_dark_scrim</item>
-        <item name="colorSurfaceTint">@color/md_theme_dark_primary</item>
+        <item name="android:colorBackground">@color/md_theme_dark_background</item>
         
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>

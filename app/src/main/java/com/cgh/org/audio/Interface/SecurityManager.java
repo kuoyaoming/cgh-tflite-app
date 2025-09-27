@@ -74,7 +74,7 @@ public class SecurityManager {
                 builder.setUserAuthenticationRequired(true)
                        .setUserAuthenticationValidityDurationSeconds(300) // 5 minutes
                        .setInvalidatedByBiometricEnrollment(true)
-                       .setRequireUserAuthentication(true);
+                       .setUserAuthenticationRequired(true);
             }
             
             keyGenerator.init(builder.build());

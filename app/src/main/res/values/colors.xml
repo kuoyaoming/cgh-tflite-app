@@ -90,4 +90,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Missing colors for compatibility -->
+    <color name="colorTomato">#FFFF6347</color>
+    <color name="colorLightGray">#FFD3D3D3</color>
+    <color name="colorblack">#FF000000</color>
+    <color name="colorLightSkyBlue">#FF87CEEB</color>
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorSlateGray">#FF708090</color>
+    <color name="colorMediumSeagreen">#FF3CB371</color>
+    <color name="colorYellowGreen">#FF9ACD32</color>
+    <color name="colorDarkGray">#FFA9A9A9</color>
 </resources>
