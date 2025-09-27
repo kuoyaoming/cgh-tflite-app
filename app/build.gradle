@@ -21,9 +21,18 @@ android {
             }
         }
     }
+    signingConfigs {
+        release {
+            storeFile file('../key/google_play_key.jks')
+            storePassword '!@#$qwerASDF'
+            keyAlias 'key0'
+            keyPassword '!@#$qwerASDF'
+        }
+    }
+    
     buildTypes {
         release {
-
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile(
