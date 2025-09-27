@@ -36,6 +36,7 @@ public class AudioRecordFunc {
     private String NewAudioName = "";
     private AudioRecord audioRecord;
     private boolean isRecord = false;// 設定正在錄製的狀態
+    private Context context;
 
     private AudioRecordFunc() {
     }
@@ -44,6 +45,22 @@ public class AudioRecordFunc {
         if (mInstance == null)
             mInstance = new AudioRecordFunc();
         return mInstance;
+    }
+    
+    public void setContext(Context context) {
+        this.context = context;
+    }
+    
+    private String getStoragePath() {
+        if (context != null) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                return context.getExternalFilesDir(Environment.DIRECTORY_MUSIC).getAbsolutePath();
+            } else {
+                return Environment.getExternalStorageDirectory().getAbsolutePath();
+            }
+        } else {
+            return Environment.getExternalStorageDirectory().getAbsolutePath();
+        }
     }
 
     /**
@@ -118,17 +135,17 @@ public class AudioRecordFunc {
     }
 
     private void creatAudioRecord() {
-        // 獲取音訊檔案路徑
+        // 獲取音訊檔案路徑 - 使用 scoped storage
         String mAudioRawPath = "";
         if (isSdcardExit()) {
-            String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String fileBasePath = getStoragePath();
             mAudioRawPath = fileBasePath + AUDIO_WAV_DIR + AUDIO_RAW_FILENAME;
         }
         AudioName = mAudioRawPath;
 
         String mAudioWavPath = "";
         if (isSdcardExit()) {
-            String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String fileBasePath = getStoragePath();
             mAudioWavPath = fileBasePath + AUDIO_WAV_DIR + AUDIO_WAV_FILENAME;
         }
         NewAudioName = mAudioWavPath;
@@ -308,7 +325,7 @@ public class AudioRecordFunc {
         public void run() {
             writeDateTOFile();//往檔案中寫入裸資料
             copyWaveFile(AudioName, NewAudioName);//給裸資料加上標頭檔案
-            File rawFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + AUDIO_WAV_DIR + AUDIO_RAW_FILENAME);
+            File rawFile = new File(getStoragePath() + AUDIO_WAV_DIR + AUDIO_RAW_FILENAME);
             boolean dstatus = rawFile.delete();
         }
     }

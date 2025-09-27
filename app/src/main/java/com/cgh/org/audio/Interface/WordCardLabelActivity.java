@@ -124,6 +124,7 @@ public class WordCardLabelActivity extends AppCompatActivity{
         String unlabeldirectoryPath = "/Medical_Project/Unlabeled/" + Date + "/" + Id + "/";
         String labeldirectoryPath = "/Medical_Project/Labeled/" + Id + "_" + Date + "/";
         recorder = AudioRecordFunc.getInstance();
+        recorder.setContext(this);
         File file = new File(Setup.DEF_STORAGE_PATH + labeldirectoryPath);
         if(!file.exists()) {
             boolean isSuccess = file.mkdirs();
@@ -615,6 +616,7 @@ public class WordCardLabelActivity extends AppCompatActivity{
                     }
 
                     recorder = AudioRecordFunc.getInstance();
+                    recorder.setContext(this);
                     String filename = "";
                     String diagnosis = holder.multiSpinner.getText().toString();
                     if (diagnosis.equals("")) {

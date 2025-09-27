@@ -44,8 +44,19 @@ public class MagicFileChooser {
      * 儲存使用這個檔案選取器的Activity。
      */
     private final Activity activity;
- 
+
     // TODO -----物件變數-----
+    
+    /**
+     * 獲取儲存路徑，支援 scoped storage
+     */
+    private String getStoragePath() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            return activity.getExternalFilesDir(Environment.DIRECTORY_MUSIC).getAbsolutePath();
+        } else {
+            return Environment.getExternalStorageDirectory().getAbsolutePath();
+        }
+    }
  
     /**
      * 儲存是否正在選取檔案。
@@ -202,7 +213,7 @@ public class MagicFileChooser {
                 final String[] divide = docId.split(":");
                 final String type = divide[0];
                 if ("primary".equals(type)) {
-                    String path = Environment.getExternalStorageDirectory().getAbsolutePath().concat("/").concat(divide[1]);
+                    String path = getStoragePath().concat("/").concat(divide[1]);
                     return createFileObjFromPath(path, mustCanRead);
                 } else {
                     String path = "/storage/".concat(type).concat("/").concat(divide[1]);
