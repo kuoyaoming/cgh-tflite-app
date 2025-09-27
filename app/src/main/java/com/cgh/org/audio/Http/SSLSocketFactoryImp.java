@@ -1,59 +1,41 @@
 package com.cgh.org.audio.Http;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
-import org.apache.http.conn.ssl.SSLSocketFactory;
+/**
+ * SSL 信任管理器 - 用於 OkHttp
+ */
+public class SSLSocketFactoryImp implements X509TrustManager {
 
-public class SSLSocketFactoryImp extends SSLSocketFactory {
-	final SSLContext sslContext = SSLContext.getInstance("TLS");
+    @Override
+    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+        // 信任所有客戶端證書
+    }
 
-	public SSLSocketFactoryImp(KeyStore truststore)
-			throws NoSuchAlgorithmException, KeyManagementException,
-			KeyStoreException, UnrecoverableKeyException {
-		super(truststore);
+    @Override
+    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+        // 信任所有服務器證書
+    }
 
-		TrustManager tm = new X509TrustManager() {
-			public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-				return null;
-			}
+    @Override
+    public X509Certificate[] getAcceptedIssuers() {
+        return new X509Certificate[0];
+    }
 
-			@Override
-			public void checkClientTrusted(
-					java.security.cert.X509Certificate[] chain, String authType)
-					throws java.security.cert.CertificateException {
-			}
-
-			@Override
-			public void checkServerTrusted(
-					java.security.cert.X509Certificate[] chain, String authType)
-					throws java.security.cert.CertificateException {
-			}
-		};
-
-		sslContext.init(null, new TrustManager[] { tm }, null);
-	}
-
-	@Override
-	public Socket createSocket(Socket socket, String host, int port,
-			boolean autoClose) throws IOException, UnknownHostException {
-		return sslContext.getSocketFactory().createSocket(socket, host, port,
-				autoClose);
-	}
-
-	@Override
-	public Socket createSocket() throws IOException {
-		return sslContext.getSocketFactory().createSocket();
-	}
-
+    /**
+     * 創建信任所有證書的 SSLContext
+     */
+    public static SSLContext createTrustAllSSLContext() {
+        try {
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[]{new SSLSocketFactoryImp()}, null);
+            return sslContext;
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create SSL context", e);
+        }
+    }
 }

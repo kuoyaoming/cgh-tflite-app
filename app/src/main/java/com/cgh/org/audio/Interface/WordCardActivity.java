@@ -287,6 +287,7 @@ public class WordCardActivity extends AppCompatActivity {
         }
 
         recorder = AudioRecordFunc.getInstance();
+        recorder.setContext(this);
         player = AudioPlayFunc.getInstance();
 
         progressObjects = new ArrayList<>();
@@ -492,6 +493,7 @@ public class WordCardActivity extends AppCompatActivity {
                         recorder.stopRecordAndFile();
                         player.stopPlay();
                         recorder = AudioRecordFunc.getInstance();
+                        recorder.setContext(this);
                         handler.removeMessages(Setup.REQ_PLAY_UPDATE);
                         handler.removeMessages(Setup.REQ_RECORD_UPDATE);
                         AudioRecordFunc.AUDIO_WAV_DIR = "/Medical_Project/Unlabeled/" + info.GetDate().replace(" / ", "-") + "/" + info.GetId() + "/";

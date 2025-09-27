@@ -1,72 +1,65 @@
 package com.cgh.org.audio.Http;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.entity.HttpEntityWrapper;
-
-import java.io.FilterOutputStream;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Created by Abhi on 11 Feb 2018 011.
+ * 自定義 HTTP 實體 - 用於 OkHttp
  */
-
-public class MyHttpEntity extends HttpEntityWrapper {
-
-    private ProgressListener progressListener;
-
-    public MyHttpEntity(final HttpEntity entity, final ProgressListener progressListener) {
-        super(entity);
+public class MyHttpEntity extends RequestBody {
+    
+    private final RequestBody delegate;
+    private final ProgressListener progressListener;
+    
+    public interface ProgressListener {
+        void onProgress(long bytesWritten, long contentLength);
+    }
+    
+    public MyHttpEntity(RequestBody delegate, ProgressListener progressListener) {
+        this.delegate = delegate;
         this.progressListener = progressListener;
     }
-
+    
     @Override
-    public void writeTo(OutputStream outStream) throws IOException {
-        this.wrappedEntity.writeTo(outStream instanceof ProgressOutputStream ? outStream :
-                new ProgressOutputStream(outStream, this.progressListener,
-                        this.getContentLength()));
+    public MediaType contentType() {
+        return delegate.contentType();
     }
-
-    public interface ProgressListener {
-        void transferred(float progress);
+    
+    @Override
+    public long contentLength() throws IOException {
+        return delegate.contentLength();
     }
-
-    public static class ProgressOutputStream extends FilterOutputStream {
-
+    
+    @Override
+    public void writeTo(okio.BufferedSink sink) throws IOException {
+        if (progressListener != null) {
+            ProgressOutputStream progressSink = new ProgressOutputStream(sink, progressListener, contentLength());
+            delegate.writeTo(progressSink);
+        } else {
+            delegate.writeTo(sink);
+        }
+    }
+    
+    private static class ProgressOutputStream extends okio.ForwardingSink {
         private final ProgressListener progressListener;
-
-        private long transferred;
-
-        private long total;
-
-        public ProgressOutputStream(final OutputStream outputStream,
-                                    final ProgressListener progressListener,
-                                    long total) {
-
-            super(outputStream);
+        private final long contentLength;
+        private long bytesWritten = 0;
+        
+        public ProgressOutputStream(okio.Sink delegate, ProgressListener progressListener, long contentLength) {
+            super(delegate);
             this.progressListener = progressListener;
-            this.transferred = 0;
-            this.total = total;
+            this.contentLength = contentLength;
         }
-
+        
         @Override
-        public void write(byte[] buffer, int offset, int length) throws IOException {
-
-            out.write(buffer, offset, length);
-            this.transferred += length;
-            this.progressListener.transferred(this.getCurrentProgress());
-        }
-
-        @Override
-        public void write(byte[] buffer) throws IOException {
-
-            out.write(buffer);
-            this.transferred++;
-            this.progressListener.transferred(this.getCurrentProgress());
-        }
-
-        private float getCurrentProgress() {
-            return ((float) this.transferred / this.total) * 100;
+        public void write(okio.Buffer source, long byteCount) throws IOException {
+            super.write(source, byteCount);
+            bytesWritten += byteCount;
+            if (progressListener != null) {
+                progressListener.onProgress(bytesWritten, contentLength);
+            }
         }
     }
 }

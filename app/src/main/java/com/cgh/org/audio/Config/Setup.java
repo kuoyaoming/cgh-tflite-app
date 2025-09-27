@@ -1,5 +1,6 @@
 package com.cgh.org.audio.Config;
 
+import android.content.Context;
 import android.os.Environment;
 
 public class Setup {
@@ -8,10 +9,27 @@ public class Setup {
     public static final String DEF_WEBAPP_URL = "https://driveuploader.com/upload/t6hj2e2uH3/";
     public static final String DEF_WEBAPP_NAME = "location";
 
-    //設定系統儲存路徑
-    public static final String DEF_STORAGE_PATH = Environment.getExternalStorageDirectory().toString();
-    public static final String DEF_AUDIO_PATH = Environment.getExternalStorageDirectory().toString() + "/Medical_Project/Labeled/";
-    public static final String DEF_AUDIO_PATH_UN = Environment.getExternalStorageDirectory().toString() + "/Medical_Project/Unlabeled/";
+    //設定系統儲存路徑 - 使用 scoped storage
+    public static String getStoragePath(Context context) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            return context.getExternalFilesDir(Environment.DIRECTORY_MUSIC).getAbsolutePath();
+        } else {
+            return Environment.getExternalStorageDirectory().toString();
+        }
+    }
+    
+    public static String getAudioPath(Context context) {
+        return getStoragePath(context) + "/Medical_Project/Labeled/";
+    }
+    
+    public static String getAudioPathUn(Context context) {
+        return getStoragePath(context) + "/Medical_Project/Unlabeled/";
+    }
+    
+    // 向後相容的靜態方法
+    public static final String DEF_STORAGE_PATH = "/storage/emulated/0/Android/data/"; // 預設路徑
+    public static final String DEF_AUDIO_PATH = "/storage/emulated/0/Android/data/Medical_Project/Labeled/";
+    public static final String DEF_AUDIO_PATH_UN = "/storage/emulated/0/Android/data/Medical_Project/Unlabeled/";
     public static final String AUDIO_RAW_FILENAME = "Temp.raw";
     public static final String AUDIO_WAV_FILENAME = "Temp.wav";
 

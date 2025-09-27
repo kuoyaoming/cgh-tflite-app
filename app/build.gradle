@@ -5,11 +5,11 @@ ext {
     support_version = "27.1.1"
 }
 android {
-    compileSdkVersion 33
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.ntust.edu.test1"
         minSdkVersion 19
-        targetSdkVersion 33
+        targetSdkVersion 29
         versionCode 5
         versionName "1.0.5"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -45,8 +45,8 @@ android {
     }
     useLibrary 'org.apache.http.legacy'
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     lintOptions {
         abortOnError false
@@ -69,5 +69,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'org.tensorflow:tensorflow-lite:2.2.0'
+    
+    // 現代 HTTP 客戶端替代 Apache HTTP
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 
 }
