@@ -306,6 +306,7 @@ public class UploaderActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         chooserX.onActivityResult(requestCode, resultCode, data);
         File[] fileX = chooserX.getChosenFiles();
 

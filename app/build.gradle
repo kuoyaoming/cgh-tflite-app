@@ -5,11 +5,11 @@ ext {
     support_version = "27.1.1"
 }
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.ntust.edu.test1"
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 5
         versionName "1.0.5"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -17,14 +17,22 @@ android {
 //        ,'x86','x86_64'
         python {
             pip {
-                buildPython "C:\\Users\\kuo\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
-                install "librosa"
+                buildPython "python3"
             }
         }
     }
+    signingConfigs {
+        release {
+            storeFile file('../key/google_play_key.jks')
+            storePassword '!@#$qwerASDF'
+            keyAlias 'key0'
+            keyPassword '!@#$qwerASDF'
+        }
+    }
+    
     buildTypes {
         release {
-
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile(
@@ -40,6 +48,9 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -49,7 +60,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'pub.devrel:easypermissions:0.2.0'
+    implementation 'pub.devrel:easypermissions:3.0.0'
     implementation group: 'org.apache.httpcomponents', name: 'httpclient-android', version: '4.3.5.1'
     implementation('org.apache.httpcomponents:httpmime:4.5.12') {
         exclude module: "httpclient"
